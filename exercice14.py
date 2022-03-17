@@ -92,7 +92,7 @@ brainIm = iio.imread("brain2.png")
 pickedPixel = pickImagePixelCoordinates(brainIm)
 
 # apply region growing
-mask = regionGrowing(brainIm,pickedPixel, 20)
+mask = regionGrowing(brainIm,pickedPixel, 60)
 
 # display segmented mask region over the original image
 imdisp.imshow(brainIm, overlaymaskorlabel=mask, overlayalpha=0.5)
