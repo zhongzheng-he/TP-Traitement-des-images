@@ -13,6 +13,7 @@ import iptools.luttools as luttools
 import matplotlib.pyplot as plt
 import iptools.imdisplaytools as imdisp
 import numpy as np
+import imageio as iio
 
 def neighbours(pixelcoordinates, connexity):
     """
@@ -33,7 +34,7 @@ def neighbours(pixelcoordinates, connexity):
         elif connexity==8:
             for i in range(-1,2,1):
                 for j in range(-1,2,1):
-                    newPixel = [pixelcoordinates[0]+r, pixelcoordinates[1]+c]
+                    newPixel = [pixelcoordinates[0]+i, pixelcoordinates[1]+j]
                     result.append(newPixel)
             
     elif dim==3:
@@ -75,8 +76,9 @@ def pickImagePixelCoordinates(im):
     arg1 : im ==> 2d array : image
     """
     imdisp.imshow(brainIm)
-    pickedPixelCoordinates = np.around(plt.ginput(1))
-    pickedPixelCoordinates = np.reshape(pickedPixelCoordinates,[2,])
+    #pickedPixelCoordinates = np.around(plt.ginput(1)) # il ne marche pas avec google colab
+    pickedPixelCoordinates = np.around([101,101])# (101,101) est le centre de la tumeur
+    pickedPixelCoordinates = np.reshape(pickedPixelCoordinates,[2,-1])
     pickedPixelCoordinates = pickedPixelCoordinates.astype("uint16")
     pickedPixelCoordinates = [pickedPixelCoordinates[1],pickedPixelCoordinates[0]] 
     
@@ -84,13 +86,13 @@ def pickImagePixelCoordinates(im):
         
 
 # load image
-brainIm = misc.imread("brain2.png")
+brainIm = iio.imread("brain2.png")
 
 # get start pixel coordinates on image
 pickedPixel = pickImagePixelCoordinates(brainIm)
 
 # apply region growing
-mask = regionGrowing(brainIm,pickedPixel, 60)
+mask = regionGrowing(brainIm,pickedPixel, 20)
 
 # display segmented mask region over the original image
 imdisp.imshow(brainIm, overlaymaskorlabel=mask, overlayalpha=0.5)
