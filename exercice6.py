@@ -9,8 +9,9 @@ import scipy.misc as misc
 import matplotlib.pyplot as plt
 import iptools.imdisplaytools as imdisp
 import numpy as np
+import imageio as iio
 
-imHeart = misc.imread("heart-gray.png")
+imHeart = iio.imread("heart-gray.png")
 
 
 plt.figure()
