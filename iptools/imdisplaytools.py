@@ -50,9 +50,9 @@ def imshow(I,lut=None, cmap=None, autorescale=None, interpolation='none', overla
         if overlaymaskorlabel is not None :
             colors = [(0,0,0,0)] + [(pl.cm.jet(i)) for i in range(1,256)] 
             new_map = matplotlib.colors.LinearSegmentedColormap.from_list('new_map', colors, N=256)
-            pl.hold(True)            
+            '''pl.hold(True)  '''          
             pl.imshow(overlaymaskorlabel, cmap=new_map, alpha=overlayalpha, interpolation='none')
-            pl.hold(False)            
+            '''pl.hold(False)  '''          
     elif len(I.shape)==3:
         pl.imshow(I,interpolation=interpolation)
         pl.axis('off')
