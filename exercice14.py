@@ -77,7 +77,7 @@ def pickImagePixelCoordinates(im):
     """
     imdisp.imshow(brainIm)
     #pickedPixelCoordinates = np.around(plt.ginput(1)) # il ne marche pas avec google colab
-    pickedPixelCoordinates = np.around([101,101])# (101,101) est le centre de la tumeur
+    pickedPixelCoordinates = np.around([101,101])# (102,102) est le centre de la tumeur
     pickedPixelCoordinates = np.reshape(pickedPixelCoordinates,[2,-1])
     pickedPixelCoordinates = pickedPixelCoordinates.astype("uint16")
     pickedPixelCoordinates = [pickedPixelCoordinates[1],pickedPixelCoordinates[0]] 
